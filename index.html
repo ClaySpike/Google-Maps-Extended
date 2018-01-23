@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!-- Created by: Max Povinelli
+on January 18,2018-->
+<html>
+<body>
+<h1>This is a thing that is 2</h1>
+<select onchange = "getMap(this)">
+  <option value="weaton">Weaton</option>
+  <option value="chicago">Chicago</option>
+  <option value="tokyo">Tokyo</option>
+  <option value="london">London</option>
+</select>
+<br></br>
+<div id="map" style="width:1260px;height:500px;background:yellow"></div>
+<script>
+  var lat;
+  var long;
+  var zooms;
+  function myMap(lat, long, zooms) {
+    if(lat == null){
+      lat = 41.8661;
+      long = -88.1070;
+      zooms = 13;
+    }
+    var mapCanvas = document.getElementById("map");
+    var mapOptions = {
+      center: new google.maps.LatLng(lat, long), zoom: zooms
+    };
+    var map = new google.maps.Map(mapCanvas, mapOptions);
+    var marker = new google.maps.Marker({
+      position: new google.maps.LatLng(lat, long),
+      map: map
+    });
+  }
+  function getMap(e){
+    if(e.value == "weaton"){
+      lat = 41.8661;
+      long = -88.1070;
+      zooms = 13;
+    }
+    else if(e.value == "chicago"){
+      lat = 41.8781;
+      long = -87.6298;
+      zooms = 10;
+    }
+    else if(e.value == "tokyo"){
+      lat = 35.6895;
+      long = 139.6917;
+      zooms = 10;
+    }
+    else if(e.value == "london"){
+      lat = 51.5074;
+      long = -0.1278;
+      zooms = 10;
+    }
+    myMap(lat,long,zooms);
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBad12n-ySDUD8R7zXsUsWdr54uGHmLCco&callback=myMap">
+</script>
+<!--
+To use this code on your website, get a free API key from Google.
+Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
+-->
+</body>
+</html>
